@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emmy Vergé – Portfolio BUT MMI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{--beige:#F4E8CE;--beige2:#E9D9B3;--orange:#EC8042;--rose:#ED4A73;--blue:#58DBCE;--ink:#240115;
+--sans:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;--serif:'Newsreader',Georgia,serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--beige);color:var(--ink);font-family:var(--serif);font-size:1.15rem;line-height:1.65}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+header{position:sticky;top:0;z-index:5;background:var(--beige);border-bottom:2px solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:.75rem 1.5rem;flex-wrap:wrap;padding:.8rem clamp(1rem,4vw,3rem)}
+.logo{font:800 1.4rem var(--sans);text-decoration:none;letter-spacing:-.02em}
+nav{display:flex;gap:.4rem;flex-wrap:wrap}
+nav a{font:700 .95rem var(--sans);text-decoration:none;padding:.4rem .9rem;border-radius:99px;border:2px solid transparent}
+nav a:hover{border-color:var(--ink)}
+nav a[aria-current=page]{background:var(--ink);color:var(--beige)}
+.lang{display:flex;align-items:center;gap:.5rem;font:700 .9rem var(--sans)}
+.lang button{all:unset;cursor:pointer;width:46px;height:26px;border-radius:99px;background:var(--blue);border:2px solid var(--ink);position:relative;box-sizing:border-box}
+.lang button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.lang button::after{content:"";position:absolute;top:1px;left:1px;width:20px;height:20px;border-radius:50%;background:var(--ink);transition:transform .2s}
+.lang button[aria-checked=true]::after{transform:translateX(20px)}
+main{max-width:1100px;margin:0 auto;padding:0 clamp(1rem,4vw,3rem) 4rem}
+.view{display:none}.view.on{display:block}
+h1,h2,h3{font-family:var(--sans);line-height:1.05;letter-spacing:-.03em}
+.hero{padding:clamp(2.5rem,8vw,6rem) 0 2rem;display:grid;gap:2rem}
+.hero h1{font-size:clamp(3rem,13vw,9rem);font-weight:800;color:var(--ink)}
+.hero p{max-width:34ch;font-size:clamp(1.25rem,3vw,1.7rem);line-height:1.35}
+.frame{background:var(--blue);padding:clamp(.5rem,1.5vw,1rem);border-radius:2rem 2rem 2rem 8rem;box-shadow:12px 12px 0 var(--rose)}
+.frame .v{position:relative;aspect-ratio:16/9;border-radius:1.4rem 1.4rem 1.4rem 7rem;overflow:hidden;background:#000}
+.frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.cap{margin-top:1.4rem;font-size:1rem;opacity:.8}
+h2{font-size:clamp(2rem,6vw,3.4rem);margin:4rem 0 1.2rem}
+.row{display:grid;grid-template-columns:1fr;gap:.2rem;padding:1.3rem 0;border-top:2px solid var(--ink);text-decoration:none}
+.row:last-child{border-bottom:2px solid var(--ink)}
+.row h3{font-size:1.6rem}
+.row span{font-size:1.05rem;max-width:60ch}
+.row:hover h3{color:var(--orange)}
+.row:nth-child(3n+2):hover h3{color:var(--blue)}
+.row:nth-child(3n):hover h3{color:#C9506A}
+@media(min-width:760px){.row{grid-template-columns:1fr 1fr;gap:2rem;align-items:baseline}.hero{grid-template-columns:1fr}}
+.about{display:grid;gap:2rem;padding-top:3rem}
+.about .blk{background:var(--rose);padding:1.5rem;border-radius:1.5rem;font-size:1.1rem}
+.about .b2{background:var(--blue)}.about .b3{background:var(--orange)}
+.about h1{font-size:clamp(2.5rem,9vw,5rem)}
+@media(min-width:760px){.about{grid-template-columns:1.2fr 1fr}.about h1,.about .wide{grid-column:1/-1}}
+.lock{max-width:440px;margin:4rem auto;background:var(--beige2);border:2px solid var(--ink);padding:2rem;border-radius:1.5rem}
+.lock h1{font-size:2rem;margin-bottom:.5rem}
+.lock input{font:700 1.5rem var(--sans);letter-spacing:.4em;width:100%;padding:.6rem 1rem;margin:1rem 0;border:2px solid var(--ink);border-radius:.8rem;background:var(--beige)}
+.btn{font:700 1rem var(--sans);background:var(--orange);color:var(--ink);border:0;padding:.8rem 1.5rem;border-radius:99px;cursor:pointer}
+.btn:hover{background:var(--ink);color:var(--beige)}
+.err{color:#B3261E;font:700 .95rem var(--sans);min-height:1.4em}
+.res{padding-top:3rem}
+.res>h1{font-size:clamp(2.2rem,8vw,4.5rem);color:var(--rose);margin-bottom:.5rem}
+details{border-top:2px solid var(--ink);padding:1rem 0}
+details:last-child{border-bottom:2px solid var(--ink)}
+summary{font:700 1.4rem var(--sans);cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::after{content:"+";color:var(--orange);font-size:1.8rem;line-height:1}
+details[open] summary::after{content:"–"}
+summary::-webkit-details-marker{display:none}
+.body{display:grid;gap:1rem;padding-top:1rem}
+.body h4{font:700 1rem var(--sans)}
+.ac{font:700 .9rem var(--sans);background:var(--rose);display:inline-block;padding:.3rem .8rem;border-radius:99px}
+footer{text-align:center;padding:3rem 1rem 2rem;font-size:.95rem;border-top:2px solid var(--ink)}
+.contact{margin-bottom:2.5rem}
+.contact h2{font-size:clamp(2rem,6vw,3.4rem);margin:0 0 1.2rem}
+#clinks{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center}
+#clinks a{font:700 1.05rem var(--sans);padding:.7rem 1.3rem;border-radius:99px;text-decoration:none;background:var(--rose);border:2px solid var(--ink)}
+#clinks a:nth-child(3n+2){background:var(--blue)}#clinks a:nth-child(3n){background:var(--orange)}
+#clinks a:hover{background:var(--ink);color:var(--beige)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+.hero{position:relative;overflow:hidden}
+.hero>*{position:relative;z-index:1}
+.shape{position:absolute;z-index:0!important;pointer-events:none}
+.s1{width:clamp(110px,22vw,260px);aspect-ratio:1;background:var(--rose);border-radius:50%;right:2%;top:8%}
+.s2{width:clamp(90px,16vw,190px);height:clamp(45px,8vw,95px);background:var(--blue);border-radius:200px 200px 0 0;right:22%;top:48%;transform:rotate(-18deg)}
+.s3{width:clamp(70px,12vw,140px);aspect-ratio:1;background:var(--orange);border-radius:50% 0 50% 50%;right:8%;top:62%;transform:rotate(20deg)}
+.s4{width:clamp(120px,18vw,220px);right:34%;top:4%;color:var(--blue)}
+.arc{display:flex;gap:1.5rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:3rem calc(50% - 150px) 9rem;margin:0 calc(-1*clamp(1rem,4vw,3rem));scrollbar-width:none;cursor:grab}
+.arc::-webkit-scrollbar{display:none}
+.arc.drag{cursor:grabbing;scroll-snap-type:none}
+.card{flex:0 0 300px;height:400px;scroll-snap-align:center;display:flex;flex-direction:column;justify-content:flex-end;gap:.6rem;padding:1.6rem;text-decoration:none;position:relative;overflow:hidden;will-change:transform;user-select:none;-webkit-user-drag:none}
+.card::before{content:"";position:absolute;opacity:.9}
+.card h3{font-size:1.7rem;position:relative}
+.card span{font-size:1rem;line-height:1.4;position:relative}
+.c0{background:var(--orange);color:var(--ink);border-radius:150px 150px 28px 28px}
+.c0::before{width:150px;aspect-ratio:1;border-radius:50%;background:var(--rose);top:60px;left:30px}
+.c1{background:var(--rose);border-radius:28px 150px 28px 28px}
+.c1::before{width:170px;height:85px;background:var(--blue);border-radius:200px 200px 0 0;top:70px;right:20px;transform:rotate(14deg)}
+.c2{background:var(--blue);color:var(--ink);border-radius:28px 28px 150px 28px}
+.c2::before{width:140px;aspect-ratio:1;background:var(--orange);border-radius:50% 0 50% 50%;top:50px;left:60px;transform:rotate(-20deg)}
+.c3{background:var(--beige2);border:2px solid var(--ink);border-radius:28px}
+.c3::before{width:150px;aspect-ratio:1;background:var(--blue);border-radius:50%;top:50px;right:30px;box-shadow:-70px 60px 0 -30px var(--rose)}
+.nav2{display:flex;gap:.6rem;justify-content:center;margin-top:-6rem;position:relative}
+.nav2 button{font:800 1.4rem var(--sans);width:52px;height:52px;border-radius:50%;border:2px solid var(--ink);background:var(--beige);cursor:pointer}
+.nav2 button:hover{background:var(--ink);color:var(--beige)}
+@media(max-width:560px){.card{flex-basis:260px;height:380px}.arc{padding-inline:calc(50% - 130px)}}
+
+.facts{display:grid;gap:1rem;margin:1rem 0 2.5rem}
+@media(min-width:760px){.facts{grid-template-columns:repeat(3,1fr)}}
+.f{padding:1.2rem 1.4rem;border-radius:1.4rem;display:flex;flex-direction:column;gap:.2rem}
+.f b{font:700 .95rem var(--sans);opacity:.85}
+.f span{font:800 1.5rem/1.15 var(--sans);letter-spacing:-.02em}
+.f1{background:var(--rose)}.f2{background:var(--blue);color:var(--ink)}.f3{background:var(--orange);color:var(--ink)}
+.skills{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.skills .card{flex:none;height:380px;transform:none;user-select:auto}
+
+.sk{padding-top:3rem}
+.sk h1{font-size:clamp(2.4rem,9vw,5rem);margin:1rem 0}
+.sk>p{max-width:46ch;font-size:1.3rem}
+.back{font:700 1rem var(--sans)}
+.works{display:grid;gap:1.5rem;margin-top:2.5rem}
+.work{border-top:2px solid var(--ink);padding:1.2rem 0;display:grid;gap:.6rem}
+.work h3{font-size:1.6rem}
+.work .frame{margin:1rem 0 1.5rem}
+.aclist{list-style:none;padding:0;display:grid;gap:.7rem;margin-top:.4rem}
+.aclist li{display:grid;grid-template-columns:auto 1fr;gap:.2rem .8rem;align-items:start;font-size:1.05rem;line-height:1.45}
+.aclist .ac{white-space:nowrap}
+@media(max-width:560px){.aclist li{grid-template-columns:1fr}.aclist .ac{justify-self:start}}
+.pdfl{display:inline-block;margin-left:.6rem;font:700 .9rem var(--sans);background:var(--blue);padding:.2rem .8rem;border-radius:99px;text-decoration:none}
+.hero{min-height:clamp(240px,38vw,400px);align-content:center}
+.about h2{margin:1.5rem 0 0}
+.about .frame{margin:0}.about .facts{margin:0}
+.about .cap{margin:0}
+.mini-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.mini{padding:1.3rem 1.5rem;border-radius:1.4rem;display:flex;flex-direction:column;gap:.3rem}
+.mini b{font:800 1.25rem/1.2 var(--sans);letter-spacing:-.01em}
+.mini span{font-size:1.05rem}
+.m1{background:var(--rose)}.m2{background:var(--blue)}.m3{background:var(--orange)}
+.sk h2{margin:3rem 0 1.2rem}
+.gallery{columns:260px;column-gap:1.2rem}
+.shot{break-inside:avoid;margin:0 0 1.2rem;border-radius:1.2rem;overflow:hidden;background:var(--beige2);border:2px solid var(--ink)}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{padding:.7rem 1rem;font:700 .95rem var(--sans)}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="#home">Emmy Vergé</a>
+  <nav aria-label="Navigation">
+    <a href="#home" data-v="home" data-i="n_home"></a>
+    <a href="#about" data-v="about" data-i="n_about"></a>
+    <a href="#resources" data-v="resources" data-i="n_res"></a>
+  </nav>
+  <div class="lang"><span>FR</span><button id="lt" role="switch" aria-checked="false" aria-label="Switch language / Changer de langue"></button><span>EN</span></div>
+</header>
+<main>
+  <section class="view" id="home">
+    <div class="hero">
+      <span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span>
+      <svg class="shape s4" viewBox="0 0 200 60" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" aria-hidden="true"><path d="M8 40 C 30 0, 50 0, 70 30 S 110 60, 130 30 S 170 0, 192 30"/></svg>
+      <h1>Emmy Vergé</h1>
+    </div>
+    <h2 data-i="h_proj"></h2>
+    <div class="skills">
+      <a class="card c0" href="#skill-content"><h3 data-i="k1t"></h3><span data-i="k1d"></span></a>
+      <a class="card c1" href="#skill-video"><h3 data-i="k2t"></h3><span data-i="k2d"></span></a>
+      <a class="card c2" href="#skill-drawing"><h3 data-i="k3t"></h3><span data-i="k3d"></span></a>
+    </div>
+  </section>
+
+  <section class="view" id="about">
+    <div class="about">
+      <h1 data-i="a_h"></h1>
+    <div class="facts wide">
+      <div class="f f1"><b data-i="b1l"></b><span data-i="b1v"></span></div>
+      <div class="f f2"><b data-i="b2l"></b><span data-i="b2v"></span></div>
+      <div class="f f3"><b data-i="b3l"></b><span data-i="b3v"></span></div>
+    </div>
+      <h2 class="wide" data-i="x_h"></h2>
+      <div class="mini-grid wide"><div class="mini m1"><b data-i="x1t"></b><span data-i="x1m"></span></div><div class="mini m2"><b data-i="x2t"></b><span data-i="x2m"></span></div><div class="mini m3"><b data-i="x3t"></b><span data-i="x3m"></span></div></div>
+      <h2 class="wide" data-i="lg_h"></h2>
+      <div class="mini-grid wide"><div class="mini m2"><b data-i="g1t"></b><span data-i="g1m"></span></div><div class="mini m1"><b data-i="g2t"></b><span data-i="g2m"></span></div></div>
+    <div class="frame wide"><div class="v"><iframe src="https://www.youtube.com/embed/yR9BCi_2eJs?si=Qir3T2nWOneN8awQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div>
+    <p class="cap wide"><a href="https://www.youtube.com/watch?v=yR9BCi_2eJs" target="_blank" rel="noopener" data-i="yt"></a></p>
+      <div class="blk b1" data-i="a_1"></div>
+      <div class="blk b2" data-i="a_2"></div>
+      <div class="blk b3 wide" data-i="a_3"></div>
+    </div>
+  </section>
+
+  <section class="view" id="skill-content">
+    <div class="sk">
+      <a class="back" href="#home" data-i="back"></a>
+      <h1 data-i="k1t"></h1>
+      <p data-i="k1p"></p>
+      <div class="works" id="w1"></div>
+      <h2 data-i="gal_h"></h2>
+      <div class="gallery" id="gal"></div>
+    </div>
+  </section>
+
+  <section class="view" id="skill-video">
+    <div class="sk">
+      <a class="back" href="#home" data-i="back"></a>
+      <h1 data-i="k2t"></h1>
+      <p data-i="k2p"></p>
+      <div class="works" id="w2"></div>
+    </div>
+  </section>
+
+  <section class="view" id="skill-drawing">
+    <div class="sk">
+      <a class="back" href="#home" data-i="back"></a>
+      <h1 data-i="k3t"></h1>
+      <p data-i="k3p"></p>
+      <div class="works" id="w3"></div>
+    </div>
+  </section>
+
+  <section class="view" id="resources">
+    <div class="lock" id="lock">
+      <h1 data-i="l_h"></h1>
+      <p data-i="l_p"></p>
+      <label for="code" class="err" style="color:var(--ink)" data-i="l_lab"></label>
+      <input id="code" type="password" inputmode="numeric" maxlength="4" autocomplete="off">
+      <button class="btn" id="go" data-i="l_btn"></button>
+      <p class="err" id="err" role="alert"></p>
+    </div>
+    <div class="res" id="res" hidden>
+      <h1 data-i="r_h"></h1>
+      <p data-i="r_p" style="margin-bottom:2rem"></p>
+      <div id="rlist"></div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="contact" id="contact" hidden><h2 data-i="ct_h"></h2><div id="clinks"></div></div>
+  <p data-i="foot"></p>
+</footer>
+
+<script>
+var UI={
+fr:{x_h:"Expérience pro",x1t:"Alternance de communication au Cercle Nautique Calédonien",x1m:"2026, rythme 2 semaines / 2 semaines",x2t:"Stagiaire de communication pour Live Sail Die",x2m:"2025, 8 semaines",x3t:"Babysitting",x3m:"Depuis 2021",lg_h:"Langues",g1t:"Français",g1m:"Langue maternelle",g2t:"Anglais",g2m:"Niveau C1",gal_h:"Posts pour les réseaux sociaux",ct_h:"Me contacter",n_home:"Accueil",n_about:"À propos",n_res:"Ressource universitaire",
+tag:"Étudiante en BUT MMI. Je conçois des stratégies de communication et du contenu qui donnent envie d’agir.",
+cap:"Web-documentaire « L’Étincelle Calédonienne » réalisé pour NC la 1ère.",
+yt:"Voir la vidéo sur YouTube",back:"← Retour aux compétences",h_proj:"Compétences",b1l:"Diplôme",b1v:"BUT MMI – Stratégie UX",b2l:"Travail",b2v:"Alternance au Cercle Nautique Calédonien",b3l:"Pays",b3v:"Nouvelle-Calédonie",k1t:"Création de contenu",k1d:"Articles, posts pour les réseaux sociaux et déclinaisons.",k1p:"Rédiger, raconter et faire vivre une marque, sur le papier comme sur les réseaux.",k2p:"Du scénario au montage : raconter une histoire en images.",k3p:"Chercher des pistes graphiques, dessiner et décliner une identité.",k2t:"Vidéo",k2d:"Web-documentaire, vidéos informatives, fiction, clip, animation.",k3t:"Dessin",k3d:"Merch, personnage, affiche, animation.",
+a_h:"À propos de moi",
+a_1:"Je termine ma troisième année de BUT MMI en Nouvelle-Calédonie. Mon parcours mêle stratégie de communication, création de contenu et événementiel.",
+a_2:"En alternance au Cercle Nautique Calédonien, j’ai décliné une identité visuelle, animé les réseaux sociaux et participé à l’organisation de grands événements nautiques.",
+a_3:"Mon stage de deuxième année chez Live Sail Die (Nouvelle-Zélande) m’a appris à écrire des articles journalistiques en anglais. Je cherche à rejoindre une équipe où analyser, créer et mesurer vont ensemble.",
+l_h:"Ressource universitaire",l_p:"Cette page est réservée à l’équipe pédagogique.",l_lab:"Code d’accès",l_btn:"Accéder",l_err:"Code incorrect. Réessayez.",
+r_h:"Ressource universitaire",r_p:"Fiches de compétences : acquis visés, preuve, démonstration, dimension professionnelle et synthèse « Je vs Nous ».",
+ac:"AC",pdf:"Ouvrir le PDF",proof:"Preuve de compétence",demo:"Démonstration",pro:"Dimension professionnelle",nous:"Synthèse « Je vs Nous »",
+more:"Voir les articles",foot:"© 2026 Emmy Vergé. Portfolio BUT MMI."},
+en:{x_h:"Work experience",x1t:"Communication work-study at the Cercle Nautique Calédonien",x1m:"2026, alternating 2 weeks / 2 weeks",x2t:"Communication intern at Live Sail Die",x2m:"2025, 8 weeks",x3t:"Babysitting",x3m:"Since 2021",lg_h:"Languages",g1t:"French",g1m:"Native",g2t:"English",g2m:"C1 level",gal_h:"Social media posts",ct_h:"Get in touch",n_home:"Home",n_about:"About",n_res:"University resources",
+tag:"BUT MMI student. I design communication strategies and content that make people want to act.",
+cap:"“L’Étincelle Calédonienne” web documentary made for NC la 1ère.",
+yt:"Watch on YouTube",back:"← Back to skills",h_proj:"Skills",b1l:"Degree",b1v:"BUT MMI – UX Strategy",b2l:"Work",b2v:"Work-study at the Cercle Nautique Calédonien",b3l:"Country",b3v:"New Caledonia",k1t:"Content creation",k1d:"Articles, social media posts and adaptations.",k1p:"Writing, storytelling and bringing a brand to life, on paper and on social media.",k2p:"From script to edit: telling a story in pictures.",k3p:"Exploring graphic directions, drawing and adapting an identity.",k2t:"Video",k2d:"Web documentary, informative videos, fiction, music video, animation.",k3t:"Drawing",k3d:"Merch, character design, poster, animation.",
+a_h:"About me",
+a_1:"I’m finishing my third year of the BUT MMI degree in New Caledonia. My work blends communication strategy, content creation and event organisation.",
+a_2:"As a work-study student at the Cercle Nautique Calédonien, I adapted a visual identity, ran social media and helped organise major sailing events.",
+a_3:"My second-year internship at Live Sail Die (New Zealand) taught me to write journalistic articles in English. I’m looking for a team where analysing, creating and measuring go hand in hand.",
+l_h:"University resources",l_p:"This page is reserved for the teaching staff.",l_lab:"Access code",l_btn:"Enter",l_err:"Wrong code. Try again.",
+r_h:"University resources",r_p:"Skill sheets: targeted outcomes, proof, demonstration, professional dimension and “Me vs We” summary.",
+ac:"AC",pdf:"Open the PDF",proof:"Proof of skill",demo:"Demonstration",pro:"Professional dimension",nous:"“Me vs We” summary",
+more:"Read the articles",foot:"© 2026 Emmy Vergé. BUT MMI portfolio."}};
+
+var P=[
+{t:["Stratégie de communication 360 – Don du sang","360° communication strategy – Blood donation"],
+d:["Analyse du marché, audits et plan média pour le centre du don du sang.","Market analysis, audits and media plan for the blood donation centre."],
+ac:"AC21.01, 21.02, 22.03, 32.01, 32.02, 32.03, 32.04, 23.05, 35.01, 35.02",
+proof:["Plan média (PDF)","Media plan (PDF)"],
+demo:["En groupe de 4 (dont 2 sur la stratégie), nous avons analysé le marché local et international, audité la communication et le site, puis imaginé le futur de l’organisation. Nous avons choisi une communication 360 (affiches, radio, réseaux sociaux) avec des campagnes lors des temps forts comme la Journée mondiale du don du sang. Les résultats seront analysés avec Meta Business Suite.","In a group of 4 (2 on strategy), we analysed the local and international market, audited communication and the website, then imagined the organisation’s future. We chose a 360° approach (posters, radio, social media) with campaigns around key moments such as World Blood Donor Day. Results will be analysed with Meta Business Suite."],
+pdf:"pdf/plan-media.pdf",
+pro:["Je comprends une organisation et son environnement, puis je crée du contenu pertinent avant, pendant et après le projet. Le « après » montre ma capacité à me remettre en question.","I understand an organisation and its environment, then create relevant content before, during and after a project. The “after” shows my ability to question myself."],
+nous:["Je mets mes idées au service du groupe en écoutant les critiques. Mon groupe peut compter sur un travail professionnel et lisible.","I put my ideas at the group’s service while listening to criticism. My team can count on professional, readable work."]},
+{t:["Web-documentaire – NC la 1ère","Web documentary – NC la 1ère"],
+d:["« L’Étincelle Calédonienne » : portrait de Paul Zongo.","“L’Étincelle Calédonienne”: a portrait of Paul Zongo."],
+ac:"AC33.01, 33.03, 33.04, 35.01, 35.02, 35.04",
+proof:["Vidéo YouTube (voir page d’accueil)","YouTube video (see home page)"],
+demo:["Pour la première chaîne télé de Nouvelle-Calédonie, nous avons réalisé un web-documentaire sur Paul Zongo, ancien athlète de haut niveau qui a créé une association de préservation des espaces maritimes de la tribu de Drueulu. Nous avons produit un dossier de réalisation (note d’intention, storyboard…). [À compléter]","For New Caledonia’s main TV channel, we made a web documentary about Paul Zongo, a former elite athlete who founded an association protecting the marine areas of the Drueulu tribe. We produced a production file (statement of intent, storyboard…). [To complete]"],
+pro:["Ce projet prouve ma capacité à travailler pour un client professionnel, en équipe, et à produire un contenu visible par de futurs employeurs.","This project proves my ability to work for a professional client, in a team, and to produce content future employers can see."],
+nous:["J’apporte mes capacités au groupe en tenant compte des retours de chacun.","I bring my skills to the group while taking everyone’s feedback into account."]},
+{t:["Audit d’une communication numérique","Digital communication audit"],
+d:["Comprendre un écosystème, ses cibles et ses concurrents.","Understanding an ecosystem, its audiences and competitors."],
+ac:"AC11.01, 11.02, 11.03, 11.04, 11.05",
+proof:["Rapport d’audit (PDF)","Audit report (PDF)"],
+demo:["Apprise en première année, cette compétence m’accompagne depuis. J’utilise des outils statistiques et des concepts de stratégie, et je rédige des rapports professionnels. À chaque rencontre avec un commanditaire, je réalise un mini-audit (SWOT, veille numérique et concurrentielle).","Learned in first year, this skill has stayed with me. I use statistical tools and strategy concepts, and write professional reports. Each time I meet a client, I run a mini-audit (SWOT, digital and competitive monitoring)."],
+pdf:"pdf/audit-communication.pdf",
+pro:["Je sais analyser un écosystème. Ayant répété l’exercice, je suis plus efficace et j’ai construit une vraie culture du domaine.","I can analyse an ecosystem. Having repeated the exercise, I’m more efficient and have built real expertise."],
+nous:["J’apporte un regard neuf et je le rends compréhensible par tous, pour que chacun avance dans la même direction et que nous formulions ensemble des recommandations.","I bring a fresh eye and make it understandable to everyone, so all move in the same direction and we make recommendations together."]},
+{t:["Adaptation d’une identité visuelle","Visual identity adaptation"],
+d:["Charte, réseaux, merchandising et signalétique du CNC Côte Blanche.","Brand guidelines, social media, merchandising and signage for CNC Côte Blanche."],
+ac:"AC13.02, 13.03, 13.06",
+proof:["Visuel CNC Côte Blanche","CNC Côte Blanche visual"],
+demo:["Après avoir pris connaissance des contraintes et fait une veille, je crée des planches d’inspiration et plusieurs pistes graphiques justifiées, validées par le commanditaire. Je produis ensuite les éléments graphiques puis les déclinaisons, optimisées pour chaque support (traditionnel ou numérique).","After reviewing constraints and monitoring trends, I create mood boards and several justified graphic directions, validated by the client. I then produce the graphic elements and adaptations, optimised for each medium (traditional or digital)."],
+pro:["Lors de mon alternance au Cercle Nautique Calédonien, le club a absorbé la Société des Régates Calédoniennes. J’ai décliné la charte, adapté les réseaux sociaux et le merchandising, et refait la signalétique, malgré les contraintes de temps, de cibles et d’objectifs.","During my work-study at the Cercle Nautique Calédonien, the club absorbed the Société des Régates Calédoniennes. I adapted the brand guidelines, social media and merchandising, and redesigned the signage, despite time, target and objective constraints."],
+nous:["J’apporte ma créativité, avec des idées originales et justifiées, pour aider l’entreprise à se renouveler et à gagner en visibilité.","I bring creativity, with original, justified ideas, to help the company renew itself and gain visibility."]},
+{t:["Stratégie de communication digitale","Digital communication strategy"],
+d:["Campagne de webmarketing pour le centre du don du sang.","Web marketing campaign for the blood donation centre."],
+ac:"AC32.01, 32.02, 32.03, 32.04",
+proof:["Dossier de stratégie (PDF)","Strategy file (PDF)"],
+demo:["Comme toute stratégie, elle définit objectifs SMART, cibles, positionnement, budget et calendrier. La différence tient au choix des leviers : SEO pour le trafic, emailing pour fidéliser, avec des indicateurs pour suivre les résultats. Cela permet des stratégies 360 ou plurimédia et une meilleure expérience utilisateur.","Like any strategy, it sets SMART objectives, targets, positioning, budget and schedule. The difference lies in choosing levers: SEO for traffic, emailing for loyalty, with indicators to track results. This enables 360° or multimedia strategies and a better user experience."],
+pdf:"pdf/strategie-digitale.pdf",
+pro:["Le digital est le meilleur moyen d’accroître visibilité et notoriété. Formée récemment, je connais les outils et tendances actuels, ce qui m’aide à projeter les futurs possibles d’une entreprise.","Digital is the best way to increase visibility and awareness. Recently trained, I know current tools and trends, which helps me project a company’s possible futures."],
+nous:["",""]},
+{t:["Dossier de démarche et méthodes UX – AÏMA","UX approach and methods file – AÏMA"],
+d:["Application mobile, jeu VR et parcours visiteurs pour le don du sang.","Mobile app, VR game and visitor journey for blood donation."],
+ac:"AC32.01, 32.02, 32.03, 32.04, 35.01, 35.02",
+proof:["Dossier de conception UX et tests utilisateurs (PDF)","UX design file and user tests (PDF)"],
+demo:["Nous avons conçu l’application AÏMA – Don du sang Nouvelle-Calédonie et un jeu de réalité virtuelle. Après avoir détaillé nos cibles (user stories), nous avons présenté les fonctionnalités en ateliers, priorisé, réalisé maquettes et prototypes, puis mené des tests utilisateurs pour revoir nos priorités et l’interface. Au Forum des étudiants de l’IUT 2026 (UNC), nous avons testé un parcours visiteurs optimisé avec 5 ateliers.","We designed the AÏMA – Blood Donation New Caledonia app and a virtual reality game. After detailing our audiences (user stories), we presented features in workshops, prioritised, built mockups and prototypes, then ran user tests to revise priorities and the interface. At the IUT Student Forum 2026 (UNC), we tested an optimised visitor journey with 5 workshops."],
+pdf:"pdf/dossier-ux.pdf",
+pro:["J’ai réalisé un dossier de conception, des tests utilisateurs et des maquettes UX/UI. Mon alternance m’a habituée aux événements et au contact avec le public.","I produced a design file, user tests and UX/UI mockups. My work-study placement made me comfortable with events and public contact."],
+nous:["",""]},
+{t:["Article pour un média néo-zélandais","Article for a New Zealand media outlet"],
+d:["Retours d’événements de voile rédigés en anglais pour Live Sail Die.","Sailing event reports written in English for Live Sail Die."],
+ac:"AC23.01, 23.04, 25.04, 25.05, 33.03, 35.04",
+proof:["livesaildie.com/author/emmylivesaildie-com","livesaildie.com/author/emmylivesaildie-com"],
+link:"https://www.livesaildie.com/author/emmylivesaildie-com/",
+demo:["Lors de mon stage de deuxième année, je participais aux événements, prenais des photos, puis faisais un brainstorming à chaud que je hiérarchisais par thèmes. Je rédigeais une première version en anglais, corrigée par l’IA puis par ma tutrice Suellen, ce qui a amélioré mon écriture professionnelle, mon storytelling et mon anglais.","During my second-year internship, I attended events, took photos, then brainstormed right away and ranked ideas by theme. I wrote a first draft in English, corrected by AI then by my tutor Suellen, which improved my professional writing, storytelling and English."],
+pro:["J’ai rédigé des articles pour un média professionnel en anglais et maîtrisé l’écrit journalistique pour une communication multimédia.","I wrote articles for a professional outlet in English and mastered journalistic writing for multimedia communication."],
+nous:["",""]},
+{t:["Co-organisation d’événements grand public","Co-organising public events"],
+d:["Corail 600, LudikCup 2026 et Kunié Sailing Week 2026.","Corail 600, LudikCup 2026 and Kunié Sailing Week 2026."],
+ac:"AC22.03, 22.05, 23.02, 23.03, 23.04, 25.04, 25.06",
+proof:["Site de l’événement / page Facebook (lien à ajouter)","Event website / Facebook page (link to add)"],
+demo:["Pendant mon alternance au Cercle Nautique Calédonien, j’ai appris à organiser des événements nautiques pour différentes cibles. [À compléter]","During my work-study at the Cercle Nautique Calédonien, I learned to organise sailing events for different audiences. [To complete]"],
+pro:["J’ai participé à la Corail 600, la LudikCup 2026 et la Kunié Sailing Week 2026 : organisation, parcours visiteurs optimisé, relations avec le public et les médias.","I took part in the Corail 600, LudikCup 2026 and Kunié Sailing Week 2026: organisation, optimised visitor journey, relations with the public and media."],
+nous:["",""]}
+];
+
+
+var W={1:[
+{t:["Articles pour Live Sail Die","Articles for Live Sail Die"],d:["Retours d’événements de voile, rédigés en anglais pour un média néo-zélandais.","Sailing event reports written in English for a New Zealand outlet."],l:"https://www.livesaildie.com/author/emmylivesaildie-com/"}],
+2:[
+{t:["L’Étincelle Calédonienne","L’Étincelle Calédonienne"],d:["Web-documentaire réalisé pour NC la 1ère : portrait de Paul Zongo, ancien athlète de haut niveau engagé pour la préservation des espaces maritimes de Drueulu.","Web documentary made for NC la 1ère: a portrait of Paul Zongo, a former elite athlete working to protect the marine areas of Drueulu."],yt:"gL-rEXo4SQk"}],
+3:[
+{t:["Identité visuelle – CNC Côte Blanche","Visual identity – CNC Côte Blanche"],d:["Pistes graphiques, charte déclinée, merchandising et signalétique du club.","Graphic directions, adapted brand guidelines, merchandising and club signage."]},
+{t:["Maquettes UX/UI – application AÏMA","UX/UI mockups – AÏMA app"],d:["Maquettes et prototypes de l’application mobile du don du sang en Nouvelle-Calédonie.","Mockups and prototypes for the New Caledonia blood donation mobile app."]}]};
+var VIDEO_MP4=""; /* ex. "video.mp4" si tu héberges le fichier dans le dépôt */
+var ACD={
+"11.01":["Présenter une organisation, ses activités et son environnement (économique, sociologique, culturel, juridique, technologique, communicationnel et médiatique)","Present an organisation, its activities and its environment (economic, sociological, cultural, legal, technological, communication and media)"],
+"11.02":["Évaluer un site web, un produit multimédia ou un dispositif interactif existant en s’appuyant sur des guides de bonnes pratiques","Evaluate an existing website, multimedia product or interactive system using best-practice guides"],
+"11.03":["Produire des analyses statistiques descriptives et les interpréter pour évaluer un contexte socio-économique","Produce descriptive statistical analyses and interpret them to assess a socio-economic context"],
+"11.04":["Analyser des formes médiatiques et leur sémiotique","Analyse media forms and their semiotics"],
+"11.05":["Identifier les cibles (critères socio-économiques, démographiques, géographiques, culturels…)","Identify target audiences (socio-economic, demographic, geographic, cultural criteria…)"],
+"13.02":["Produire des pistes graphiques et des planches d’inspiration","Produce graphic directions and mood boards"],
+"13.03":["Créer, composer et retoucher des visuels","Create, compose and retouch visuals"],
+"13.06":["Optimiser les médias en fonction de leurs usages et supports de diffusion","Optimise media for their uses and distribution channels"],
+"21.01":["Analyser la stratégie de communication ou marketing d’un acteur, d’une organisation au regard d’un secteur ou d’un marché","Analyse the communication or marketing strategy of an actor or organisation within a sector or market"],
+"21.02":["Auditer un site web, une marque ou un service, en termes de trafic et de référencement","Audit a website, brand or service in terms of traffic and search ranking"],
+"22.03":["Co-construire une recommandation stratégique (en structurant un plan d’action)","Co-build a strategic recommendation (by structuring an action plan)"],
+"22.05":["Mettre en place une présence sur les réseaux sociaux","Set up a presence on social media"],
+"23.01":["Produire un écrit journalistique sourcé et documenté","Produce a sourced and documented piece of journalistic writing"],
+"23.02":["Définir une iconographie (illustrations, photographies, vidéos)","Define an iconography (illustrations, photographs, videos)"],
+"23.03":["Créer et décliner une identité visuelle (charte graphique)","Create and adapt a visual identity (brand guidelines)"],
+"23.04":["Imaginer, écrire et scénariser en vue d’une communication multimédia ou transmédia","Imagine, write and script for multimedia or transmedia communication"],
+"23.05":["Réaliser, composer et produire pour une communication plurimédia","Make, compose and produce for multimedia communication"],
+"25.04":["Collaborer au sein des organisations","Collaborate within organisations"],
+"25.05":["Maîtriser les codes des productions écrites et orales professionnelles","Master the conventions of professional written and spoken output"],
+"25.06":["Prendre en compte les contraintes juridiques","Take legal constraints into account"],
+"32.01":["Projeter les futurs possibles d’une organisation, d’une marque, d’un service, produit ou secteur (tendances, évolutions, scénarios prospectifs)","Project the possible futures of an organisation, brand, service, product or sector (trends, developments, foresight scenarios)"],
+"32.02":["Co-construire un produit ou service de manière itérative (ateliers de créativité, idéation, définition de l’expérience utilisateur, exploitation des résultats de test)","Co-build a product or service iteratively (creativity workshops, ideation, user experience definition, use of test results)"],
+"32.03":["Concevoir et mettre en œuvre une communication 360, plurimédia ou transmédia","Design and implement a 360°, multimedia or transmedia communication"],
+"32.04":["Construire des outils de validation et de suivi (flux, indicateurs de performance, tableaux de bord, référencement, engagement…)","Build validation and monitoring tools (flows, performance indicators, dashboards, search ranking, engagement…)"],
+"33.01":["Adopter et justifier une démarche originale et personnelle dans ses productions","Adopt and justify an original, personal approach in one’s productions"],
+"33.03":["Maîtriser les étapes de production d’un projet multimédia","Master the production stages of a multimedia project"],
+"33.04":["Appréhender les enjeux liés à la direction artistique","Understand the challenges of art direction"],
+"35.01":["Piloter un produit, un service ou une équipe","Manage a product, a service or a team"],
+"35.02":["Maîtriser la qualité en projet Web ou multimédia","Master quality in web or multimedia projects"],
+"35.04":["Défendre un projet de manière convaincante","Defend a project convincingly"]};
+function acList(p,L){return '<ul class="aclist">'+p.ac.split(", ").map(function(c){c=c.replace("AC","");var d=ACD[c];return '<li><b class="ac">AC'+c+'</b><span>'+esc(d?d[L]:"")+'</span></li>'}).join("")+'</ul>'}
+var G=[
+{f:"img/kunie-must-do.jpg",c:["Kunié Sailing Week : « Must do en baie de Kuto »","Kunié Sailing Week: “Must do in Kuto Bay”"]},
+{f:"img/offshore.jpg",c:["Offshore : 19 et 20 septembre","Offshore: 19–20 September"]},
+{f:"img/corail-600.jpg",c:["Corail 600 : dimanche 14 juin au Cercle Nautique Calédonien","Corail 600: Sunday 14 June at the Cercle Nautique Calédonien"]},
+{f:"img/coups-de-pouce.jpg",c:["Coups de pouce : date limite du dossier, 19 avril","Coups de pouce: application deadline, 19 April"]},
+{f:"img/match-race.jpg",c:["« Le saviez-vous ? » : édition Match Race en NC","“Did you know?”: Match Race edition in NC"]}];
+/* Renseigne tes contacts ici : les champs vides ne s’affichent pas. */
+var CONTACT={email:"emmyvergepro@gmail.com",phone:"+687 544286",linkedin:"",instagram:""};
+var lang="fr",unlocked=false;
+try{lang=localStorage.getItem("lang")||(navigator.language||"").slice(0,2)==="en"?"en":"fr";if(localStorage.getItem("lang"))lang=localStorage.getItem("lang")}catch(e){}
+try{unlocked=sessionStorage.getItem("ok")==="1"}catch(e){}
+var $=function(s){return document.querySelector(s)};
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+
+function showPdfs(){
+  document.querySelectorAll("a[data-pdf]").forEach(function(a){
+    if(location.protocol==="file:"){a.hidden=false;return}
+    fetch(a.dataset.pdf,{method:"HEAD"}).then(function(r){if(r.ok)a.hidden=false}).catch(function(){});
+  });
+}
+function render(){
+  var L=lang==="en"?1:0,u=UI[lang];
+  document.documentElement.lang=lang;
+  $("#lt").setAttribute("aria-checked",L?"true":"false");
+  document.querySelectorAll("[data-i]").forEach(function(e){e.textContent=u[e.dataset.i]});
+  [1,2,3].forEach(function(n){$("#w"+n).innerHTML=W[n].map(function(w){
+    var l=w.l?'<a href="'+w.l+'" target="_blank" rel="noopener">'+esc(UI[lang].more)+'</a>':"";
+    var v=w.yt?'<div class="frame"><div class="v"><iframe src="https://www.youtube.com/embed/'+w.yt+'" title="'+esc(w.t[L])+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div>':"";
+    return '<article class="work"><h3>'+esc(w.t[L])+'</h3><p>'+esc(w.d[L])+'</p>'+v+l+'</article>'}).join("")});
+  $("#rlist").innerHTML=P.map(function(p){
+    var pr=p.link?'<a href="'+p.link+'" target="_blank" rel="noopener">'+esc(p.proof[L])+'</a>':esc(p.proof[L]);
+    if(p.pdf)pr+=' <a class="pdfl" data-pdf="'+p.pdf+'" href="'+p.pdf+'" target="_blank" rel="noopener" hidden>'+u.pdf+'</a>';
+    return '<details><summary>'+esc(p.t[L])+'</summary><div class="body"><div><h4>'+u.ac+'</h4>'+acList(p,L)+'</div><div><h4>'+u.proof+'</h4>'+pr+'</div><div><h4>'+u.demo+'</h4>'+esc(p.demo[L])+'</div><div><h4>'+u.pro+'</h4>'+esc(p.pro[L])+'</div>'+(p.nous[L]?'<div><h4>'+u.nous+'</h4>'+esc(p.nous[L])+'</div>':'')+'</div></details>';
+  }).join("");
+  $("#gal").innerHTML=G.map(function(x){return '<figure class="shot"><a href="'+x.f+'" target="_blank" rel="noopener"><img src="'+x.f+'" alt="'+esc(x.c[L])+'" loading="lazy"></a><figcaption>'+esc(x.c[L])+'</figcaption></figure>'}).join("");
+  showPdfs();
+  var e=$("#err");if(e.dataset.on)e.textContent=u.l_err;
+}
+var cur="home";
+function route(h){
+  if(typeof h!=="string")h=cur;
+  if(!document.getElementById(h)||h==="lock"||h==="res")h="home";
+  document.querySelectorAll(".view").forEach(function(v){v.classList.toggle("on",v.id===h)});
+  document.querySelectorAll("nav a").forEach(function(a){a.dataset.v===h?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});
+  $("#lock").hidden=unlocked;$("#res").hidden=!unlocked;
+  cur=h;window.scrollTo(0,0);
+}
+function tryCode(){
+  if($("#code").value==="0000"){
+    unlocked=true;try{sessionStorage.setItem("ok","1")}catch(e){}
+    $("#err").dataset.on="";$("#err").textContent="";route();
+  }else{$("#err").dataset.on="1";$("#err").textContent=UI[lang].l_err;$("#code").select()}
+}
+$("#lt").onclick=function(){lang=lang==="fr"?"en":"fr";try{localStorage.setItem("lang",lang)}catch(e){}render()};
+$("#go").onclick=tryCode;
+$("#code").addEventListener("keydown",function(e){if(e.key==="Enter")tryCode()});
+window.addEventListener("hashchange",function(){route((location.hash||"#home").slice(1))});
+document.addEventListener("click",function(e){
+  var a=e.target.closest&&e.target.closest('a[href^="#"]');
+  if(!a)return;
+  e.preventDefault();
+  var h=a.getAttribute("href").slice(1);
+  route(h);
+  try{history.replaceState(null,"","#"+h)}catch(x){}
+});
+
+if(VIDEO_MP4){var hv=$("#home .v");hv.innerHTML='<video controls playsinline preload="metadata" src="'+VIDEO_MP4+'" style="width:100%;height:100%"></video>'}
+(function(){
+  var c=CONTACT,l=[];
+  if(c.email)l.push(['mailto:'+c.email,c.email]);
+  if(c.phone)l.push(['tel:'+c.phone.replace(/[^\d+]/g,""),c.phone]);
+  if(c.linkedin)l.push([c.linkedin,"LinkedIn"]);
+  if(c.instagram)l.push([c.instagram,"Instagram"]);
+  if(!l.length)return;
+  $("#clinks").innerHTML=l.map(function(x){return '<a href="'+x[0]+'"'+(x[0].indexOf("http")===0?' target="_blank" rel="noopener"':'')+'>'+esc(x[1])+'</a>'}).join("");
+  $("#contact").hidden=false;
+})();
+render();route((location.hash||"#home").slice(1));
+</script>
+</body>
+</html>
